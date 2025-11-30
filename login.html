@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login|Page</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/aos/aos.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="app-header">
+            <div class="header-content">
+                <div class="header-title"><img src="/images/call_icon.svg" alt=""><span>Hotline : 023-920-8888</span>
+                </div>
+                <div class="language-content">
+                    <div class="language-tite">ភាសាខ្មែរ</div>
+                    <div class="language-tite">English</div>
+                    <div class="language-tite">繁中</div>
+                    <div class="language-tite">简中</div>
+                </div>
+            </div>
+        </div>
+        <div class="login-body">
+            <img class="login-bg" src="/images/BackgroundLogin.svg" alt="Login background">
+            <div class="login-content">
+                <div class="login-left">
+
+                    <div class="go-back-form">
+                        <a href="home.html">
+                            <img src="/images/Arow-back.svg" alt="Back Arrow">
+                            <span>Go Back</span>
+                        </a>
+                    </div>
+                    <div class="content-left" data-aos="flip-left">
+                        <div class="content-logo">
+                            <img src="/images/img_logo.svg" alt="">
+                            <img src="/images/logo_title.svg" alt="">
+                        </div>
+                        <div class="content-desciption">
+                            <div class="first-descript">ដៃគូគ្រប់គ្រងហិរញ្ញវត្ថុ</div>
+                            <div class="second-descript">ដ៏ល្អបំផុតរបស់លោកអ្នក</div>
+                            <div class="third-descript">YOUR BEST FINANCIAL PARTNER</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="login-right">
+                    <form action="" class="login-form" data-aos="zoom-in">
+                        <div class="login-title">Log In</div>
+                        <div class="input-form">
+                            <label for="userName">User Name or ID</label>
+                            <input type="text" name="" id="userName" placeholder="User ID *">
+                        </div>
+                        <!-- <div class="input-form">
+                            <label for="userName">Select role</label>
+                            <select name="" id="">
+                                <option value="">Sale</option>
+                                <option value="">Agent</option>
+                                <option value="">Supervisor</option>
+                                <option value="">Manager</option>
+                            </select>
+                        </div> -->
+                        <div class="input-form">
+                            <label for="userName">Password</label>
+                            <input type="password" name="" id="userName" placeholder="xxxxxxxxx">
+                        </div>
+                        <div class="login-form-footer">
+                            <a href="" class="forget-password">Forget Password</a>
+                            <div class="remember">
+                                <input type="checkbox" name="" id="remember">
+                                <label for="remember">Remember me</label>
+                            </div>
+
+                        </div>
+                        <div class="be-care-full-block">
+                            <img src="/images/danger.png" alt="">
+                            <div class="be-care-full-content">
+                                <p>Password Security Reminder</p>
+                                <p>Passwords expire automatically every 30 days, with reminders
+                                    sent 3 days before expiration. Accounts will be locked after 5
+                                    consecutive failed login attempts.</p>
+                            </div>
+                        </div>
+                        <div class="submit-login">
+                            <a href="dashboard.html">
+                                <div class="submit-button">
+                                    <img src="/images/login-icon.svg" alt=""><span>Login</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/aos/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000, // animation duration in ms
+        once: false      // <---- important! animation happens every time scrolling
+    });
+</script>
+
+</html>

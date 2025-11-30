@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Stone | Notifications</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/aos/aos.css">
+</head>
+
+<body>
+    <div class="app-header">
+        <div class="header-content">
+            <div class="header-title"><img src="/images/call_icon.svg" alt=""><span>Hotline : 023-920-8888</span>
+            </div>
+            <div class="language-content">
+                <div class="language-tite">ភាសាខ្មែរ</div>
+                <div class="language-tite">English</div>
+                <div class="language-tite">繁中</div>
+                <div class="language-tite">简中</div>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR -->
+    <div class="navbar" data-aos="fade-up">
+        <a href="home.html">
+                <div class="logo">
+                    <img src="/images/img_logo.svg" alt="">
+                    <img src="/images/logo_title.svg" alt="">
+                </div>
+            </a>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="proposal.html">Proposal</a>
+            <a href="Application.html">Application</a>
+            <a href="PolicyQuery.html">Policy Query</a>
+            <a href="Performance.html">Performance</a>
+            <a href="Notification.html" class="active">Notifications</a>
+            <a href="Claim.html">Claims</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="profile.html">
+                <div class="profile">
+                    <img src="/images/profile.png" alt="">
+                </div>
+            </a>
+            <span>Sale001</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <!-- System Notifications -->
+        <div class="section" data-aos="fade-right">
+            <div class="section-header">System Notifications</div>
+            <div class="section-content">
+                <div class="notice info">
+                    <strong>📢 System Announcement</strong>
+                    System maintenance will be performed from 2:00–4:00 AM this Saturday. The system will be unavailable
+                    during this period. Please plan your work accordingly.
+                </div>
+                <div class="notice warning">
+                    <strong>⚠️ Password Expiring Soon</strong>
+                    Your password will expire in 3 days. Please change it promptly.
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Payment Reminders -->
+        <div class="section" data-aos="fade-left">
+            <div class="section-header">Premium Payment Reminders</div>
+            <div class="section-content">
+                <div class="notice purple">
+                    <strong>💰 Premium Payment Reminder – Zhang Xiaoming</strong>
+                    Policy No: P202305001, Premium $104.5 due in 7 days. Please notify the customer to pay promptly.
+                </div>
+                <div class="notice red">
+                    <strong>❗ Overdue Notice – Li Meili</strong>
+                    Policy No: P202306012, Premium $156.8 overdue for 3 days. Please follow up immediately.
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Birthday Reminders -->
+        <div class="section" data-aos="fade-right">
+            <div class="section-header">Customer Birthday Reminders</div>
+            <div class="section-content">
+                <div class="notice green">
+                    <strong>🎂 Today's Birthday Customers</strong>
+                    Wang Jianguo (Policy No: P202307025) has birthday today. Please send blessings.
+                </div>
+                <div class="notice lightgreen">
+                    <strong>📅 This Week's Birthday Customers</strong>
+                    Zhang Xiaoming (2023-07-15) | Li Meili (2023-07-18)
+                </div>
+            </div>
+        </div>
+        <!-- === SIGN OUT MODAL === -->
+        <div class="signout-overlay" id="signoutModal">
+            <div class="signout-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt="Sign Out Icon">
+                <h3>Would you like to sign out?</h3>
+                <p>You will need to log in again to access your Account</p>
+                <div class="signout-btns">
+                    <button class="btn btn-signout" id="confirmSignOut">Sign Out</button>
+                    <button class="btn btn-cancel" id="cancelSignOut">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/aos/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000, // animation duration in ms
+        once: false      // <---- important! animation happens every time scrolling
+    });
+</script>
+
+</html>

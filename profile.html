@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Stone | Profile Setting</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/aos/aos.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="app-header">
+        <div class="header-content">
+            <div class="header-title"><img src="/images/call_icon.svg" alt=""><span>Hotline : 023-920-8888</span>
+            </div>
+            <div class="language-content">
+                <div class="language-tite">ភាសាខ្មែរ</div>
+                <div class="language-tite">English</div>
+                <div class="language-tite">繁中</div>
+                <div class="language-tite">简中</div>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR -->
+    <div class="navbar" data-aos="fade-up">
+        <a href="home.html">
+                <div class="logo">
+                    <img src="/images/img_logo.svg" alt="">
+                    <img src="/images/logo_title.svg" alt="">
+                </div>
+            </a>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="proposal.html">Proposal</a>
+            <a href="Application.html">Application</a>
+            <a href="PolicyQuery.html">Policy Query</a>
+            <a href="Performance.html">Performance</a>
+            <a href="Notification.html">Notifications</a>
+            <a href="Claim.html">Claims</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="profile.html">
+                <div class="profile">
+                    <img src="/images/profile.png" alt="">
+                </div>
+            </a>
+            <span>Sale001</span>
+        </div>
+    </div>
+
+    <!-- PROFILE SECTION -->
+    <div class="profile-section" data-aos="fade-down">
+        <div class="profile-header"><span>Profile Setting</span><button class="sign-out">Sign Out</button></div>
+
+        <div class="profile-body">
+            <div class="profile-alert">
+                ⚠️ Passwords expire automatically every 30 days, with reminders sent 3 days before expiration.
+                Accounts will be locked after 5 consecutive failed login attempts.
+            </div>
+
+            <div class="profile-info">
+                <div class="profile-photo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="User">
+                    <p>SaleA001<br><small>PNG, JPEG under 2MB</small></p>
+                </div>
+                <div class="profile-buttons">
+                    <button class="btn-upload">Upload new Picture</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="profile-form">
+                <div>
+                    <label>First Name</label>
+                    <input type="text" value="Wang">
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" value="Sale">
+                </div>
+                <div>
+                    <label>Phone Number</label>
+                    <input type="text" value="012 345 678">
+                </div>
+                <div>
+                    <label>2nd Phone Number</label>
+                    <input type="text" placeholder="xxx xxx xxx">
+                </div>
+            </div>
+
+            <div class="change-password">
+                <h4>Change Password</h4>
+                <p>⚠️ For security reasons, you will be logged out after changing your password.
+                    You will then be able to log in again with your new password.</p>
+
+                <label>Current Password<span style="color:red">*</span></label>
+                <input type="password" placeholder="xxxxxxxx">
+
+                <label>New Password</label>
+                <input type="password" placeholder="xxx xxx xxx">
+
+                <label>Confirm New Password</label>
+                <input type="password" placeholder="xxx xxx xxx">
+
+                <div class="submit-btn">
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- PASSWORD SUCCESS POPUP -->
+    <div id="passwordPopup" class="password-overlay">
+        <div class="password-box">
+            <div class="password-icon">✔</div>
+            <h3>Password Changed!</h3>
+            <p>Your Password has changed Successfully.</p>
+        </div>
+    </div>
+    <!-- === SIGN OUT MODAL === -->
+    <div class="signout-overlay" id="signoutModal">
+        <div class="signout-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt="Sign Out Icon">
+            <h3>Would you like to sign out?</h3>
+            <p>You will need to log in again to access your Account</p>
+            <div class="signout-btns">
+                <button class="btn btn-signout" id="confirmSignOut">Sign Out</button>
+                <button class="btn btn-cancel" id="cancelSignOut">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/js/index.js"></script>
+<script src="/aos/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000, // animation duration in ms
+        once: false      // <---- important! animation happens every time scrolling
+    });
+</script>
+
+</html>

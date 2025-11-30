@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy | Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/aos/aos.css">
+</head>
+
+<body>
+
+    <div class="app-header" data-aos="fade-down">
+        <div class="header-content">
+            <div class="header-title"><img src="/images/call_icon.svg" alt=""><span>Hotline : 023-920-8888</span>
+            </div>
+            <div class="language-content">
+                <div class="language-tite">ភាសាខ្មែរ</div>
+                <div class="language-tite">English</div>
+                <div class="language-tite">繁中</div>
+                <div class="language-tite">简中</div>
+            </div>
+        </div>
+    </div>
+    <div class="app-menu">
+        <div class="menu-content">
+            <a href="home.html">
+                <div class="home-logo-content">
+                    <img src="/images/img_logo.svg" alt="">
+                    <img src="/images/logo_title.svg" alt="">
+                </div>
+            </a>
+            <div class="menu-title-content">
+                <a data-aos="fade-down" href="home.html">
+                    <div class="menu-title">Home</div>
+                </a>
+                <div data-aos="fade-down" class="product-menu">
+                    <div class="menu-label" tabindex="0">Product <img src="/images/drop-arrow.svg" alt=""></div>
+                    <div class="dropdown-product">
+                        <a href="home.html#allproduct">All Products</a>
+                        <a href="home.html#shinning">Shining Life</a>
+                        <a href="home.html#lovefamily">Lovely Family</a>
+                        <a href="home.html#blessing5">5 Blessings</a>
+                    </div>
+                </div>
+                <a href="newNupdate.html">
+                    <div data-aos="fade-down" class="menu-title">News& Updates</div>
+                </a>
+                <a data-aos="fade-down" href="aboutUs.html">
+                    <div class="menu-title">About US</div>
+                </a>
+                <a data-aos="fade-down" href="Policy.html">
+                    <div class="menu-title">Find your policy</div>
+                </a>
+            </div>
+            <div class="member-button-content">
+                <div class="member-login">
+                    <img src="/images/member_icon.svg" alt>
+                    <div class="tool-type">1</div>
+                </div>
+                <!-- Popup -->
+                <div class="profile-popup" id="profilePopup">
+                    <div class="close-btn" id="closePopup">&times;</div>
+                    <div class="profile-icon"><img src="/images/member_icon.svg" alt=""></div>
+                    <h2>Hi, SaleA001!</h2>
+
+                    <div class="warning">
+                        <span class="tool-type">1</span><span>Please Change Your Current Password!</span>
+                    </div>
+
+                    <div class="actions">
+                        <a href="changepassword.html">
+                            <div class="btn"><img src="/images/lock.png" alt=""> Change Password</div>
+                        </a>
+                        <a href="login.html">
+                            <div class="btn"><img src="/images/signout.png" alt="">Sign Out</div>
+                        </a>
+                    </div>
+
+                    <p>Forget Password? Please Contact Customer Service!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-section">
+        <div class="search-section-title" data-aos="zoom-in">Find your policy</div>
+        <div class="search-box" data-aos="fade-down">
+            <label>Policyholder Name</label>
+            <div class="seaching-input-block">
+                <input type="text" id="search-name" placeholder="Please Enter">
+                <img src="/images/seach-icon.svg" alt="">
+            </div>
+        </div>
+        <div class="search-box" data-aos="fade-down">
+            <label>Policy Number</label>
+            <div class="seaching-input-block">
+                <input type="text" id="search-policy" placeholder="Please Enter">
+                <img src="/images/seach-icon.svg" alt="">
+            </div>
+        </div>
+        <div class="search-box" data-aos="fade-down">
+            <label>Phone Number</label>
+            <div class="seaching-input-block">
+                <input type="text" id="search-phone" placeholder="Please Enter">
+                <img src="/images/seach-icon.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="policy-table">
+        <div class="policy-table-content">
+            <table id="policyTable" data-aos="zoom-in">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Policy number</th>
+                        <th>Name of the insured</th>
+                        <th>Name of insurance</th>
+                        <th>Premiums</th>
+                        <th>Payment method</th>
+                        <th>Payment period</th>
+                        <th>Business(agency) commission rate</th>
+                        <th>Business(agency) commission</th>
+                        <th>Salesperson (deputy)</th>
+                        <th>Referral commission rate</th>
+                        <th>Referral commission AMT</th>
+                        <th>Referral</th>
+                        <th>Payment Date</th>
+                        <th>Settlement Date</th>
+                        <th>Date of enrollment</th>
+                        <th>Insurance category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Generate rows dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="policy-footer-content">
+        <p class="record-info">
+            显示第 <span id="startNum">1</span> 到第 <span id="endNum">20</span> 条记录，总共 <span id="totalNum">0</span> 条记录 每页显示
+            <span>20 ▲</span> 条记录
+        </p>
+        <div class="pagination"></div>
+
+
+    </div>
+
+
+</body>
+<script src="/js/index.js"></script>
+<script src="/aos/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000, // animation duration in ms
+        once: false      // <---- important! animation happens every time scrolling
+    });
+</script>
+
+</html>

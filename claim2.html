@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Titan Life Insurance Claim Application</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+        <style>
+        :root {
+            --primary-color: #1a4b8c;
+            --secondary-color: #2c6ab3;
+            --light-color: #e9f0f8;
+            --accent-color: #ff6b35;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .required::after {
+            content: " *";
+            color: var(--accent-color);
+        }
+        
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+        
+        .progress-bar {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .document-list {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .document-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-note {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #e9ecef;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step.active .step-circle {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .step.completed .step-circle {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .form-section {
+            display: none;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #ced4da;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .file-upload-area:hover {
+            border-color: var(--primary-color);
+            background-color: var(--light-color);
+        }
+        
+        .file-upload-area i {
+            font-size: 3rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .uploaded-files {
+            margin-top: 1rem;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            background-color: white;
+        }
+        
+        .file-name {
+            flex-grow: 1;
+        }
+        
+        .file-remove {
+            color: var(--accent-color);
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .claim-type-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .claim-type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .claim-type-card.selected {
+            border: 2px solid var(--primary-color);
+            background-color: var(--light-color);
+        }
+        
+        .claim-type-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .claim-type-description {
+            color: #666;
+        }
+        
+        .policy-search {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .client-info-display {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .client-info-display h5 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .step-label {
+                font-size: 0.75rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1>Titan Life Insurance Claim Application</h1>
+                        <p class="lead">Please fill out the form below to apply
+                            for insurance claim. We will process it as soon as
+                            possible.</p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <p><strong>Claim Hotline</strong>: +855-23-456-789</p>
+                        <p><strong>Service Hours</strong>: Mon-Fri
+                            9:00-18:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-5">
+            <div class="progress-container">
+                <div class="step-indicator">
+                    <div class="step active" data-step="1">
+                        <div class="step-circle">1</div>
+                        <div class="step-label">Claim Type</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-circle">2</div>
+                        <div class="step-label">Policy Search</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-circle">3</div>
+                        <div class="step-label">Incident Info</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-circle">4</div>
+                        <div class="step-label">Beneficiary Info</div>
+                    </div>
+                    <div class="step" data-step="5">
+                        <div class="step-circle">5</div>
+                        <div class="step-label">Documents</div>
+                    </div>
+                    <div class="step" data-step="6">
+                        <div class="step-circle">6</div>
+                        <div class="step-label">Review & Submit</div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="insuranceClaimForm">
+                <!-- Section 1: Claim Type -->
+                <div class="form-container form-section active" id="section-1">
+                    <h2 class="section-title">Select Claim Type</h2>
+
+                    <div class="claim-type-card selected"
+                        data-claim-type="death">
+                        <div class="claim-type-name">Death Claim</div>
+                        <div class="claim-type-description">Claim for insured
+                            person's death</div>
+                    </div>
+
+                    <div class="claim-type-card" data-claim-type="disability">
+                        <div class="claim-type-name">Disability Claim</div>
+                        <div class="claim-type-description">Claim for total and
+                            permanent disability</div>
+                    </div>
+
+                    <div class="claim-type-card" data-claim-type="accident">
+                        <div class="claim-type-name">Accident Claim</div>
+                        <div class="claim-type-description">Claim for accidental
+                            death or disability</div>
+                    </div>
+
+                    <div class="claim-type-card" data-claim-type="maturity">
+                        <div class="claim-type-name">Maturity Claim</div>
+                        <div class="claim-type-description">Claim for policy
+                            maturity</div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <div></div> <!-- Empty div for alignment -->
+                        <button type="button"
+                            class="btn btn-primary next-section" data-next="2">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 2: Policy Search -->
+                <div class="form-container form-section" id="section-2">
+                    <h2 class="section-title">Policy Search</h2>
+
+                    <div class="policy-search">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="policyNumber"
+                                    class="form-label required">Policy
+                                    Number</label>
+                                <input type="text" class="form-control"
+                                    id="policyNumber" required
+                                    placeholder="e.g. TLI-2023-00123">
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button type="button"
+                                    class="btn btn-primary w-100"
+                                    id="searchPolicy">
+                                    Search Policy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-text">Please enter your policy number,
+                            the system will automatically load customer
+                            information</div>
+                    </div>
+
+                    <div id="clientInfoDisplay" class="client-info-display"
+                        style="display: none;">
+                        <h5>Client Information</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Insured Name:</strong> <span
+                                        id="displayInsuredName">-</span></p>
+                                <p><strong>ID/Passport:</strong> <span
+                                        id="displayInsuredId">-</span></p>
+                                <p><strong>Date of Birth:</strong> <span
+                                        id="displayBirthdate">-</span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Gender:</strong> <span
+                                        id="displayGender">-</span></p>
+                                <p><strong>Insurance Plan:</strong> <span
+                                        id="displayPolicyType">-</span></p>
+                                <p><strong>Policy Start Date:</strong> <span
+                                        id="displayPolicyStartDate">-</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h3 class="h5 mb-3">Applicant Information</h3>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="applicantName"
+                                class="form-label required">Applicant
+                                Name</label>
+                            <input type="text" class="form-control"
+                                id="applicantName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="relationship"
+                                class="form-label required">Relationship to
+                                Insured</label>
+                            <select class="form-select" id="relationship"
+                                required>
+                                <option value>Please select
+                                    relationship</option>
+                                <option value="Self">Self</option>
+                                <option value="Spouse">Spouse</option>
+                                <option value="Child">Child</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Sibling">Sibling</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="applicantPhone"
+                                class="form-label required">Contact
+                                Phone</label>
+                            <input type="tel" class="form-control"
+                                id="applicantPhone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="applicantEmail"
+                                class="form-label required">Email
+                                Address</label>
+                            <input type="email" class="form-control"
+                                id="applicantEmail" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="applicantAddress"
+                                class="form-label required">Mailing
+                                Address</label>
+                            <input type="text" class="form-control"
+                                id="applicantAddress" required>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button"
+                            class="btn btn-outline-secondary prev-section"
+                            data-prev="1">
+                            Previous
+                        </button>
+                        <button type="button"
+                            class="btn btn-primary next-section" data-next="3">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 3: Incident Information -->
+                <div class="form-container form-section" id="section-3">
+                    <h2 class="section-title">Incident Information</h2>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="incidentDate"
+                                class="form-label required">Incident
+                                Date</label>
+                            <input type="date" class="form-control"
+                                id="incidentDate" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="incidentLocation"
+                                class="form-label required">Incident
+                                Location</label>
+                            <input type="text" class="form-control"
+                                id="incidentLocation" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="incidentDetails"
+                            class="form-label required">Detailed Description of
+                            Incident</label>
+                        <textarea class="form-control" id="incidentDetails"
+                            rows="5" required
+                            placeholder="Please describe the incident in detail"></textarea>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="hospital"
+                                class="form-label">Hospital</label>
+                            <input type="text" class="form-control"
+                                id="hospital">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="deathDate" class="form-label"
+                                id="deathDateLabel">Date of Death</label>
+                            <input type="date" class="form-control"
+                                id="deathDate">
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button"
+                            class="btn btn-outline-secondary prev-section"
+                            data-prev="2">
+                            Previous
+                        </button>
+                        <button type="button"
+                            class="btn btn-primary next-section" data-next="4">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 4: Beneficiary Information -->
+                <div class="form-container form-section" id="section-4">
+                    <h2 class="section-title">Beneficiary Information</h2>
+                    <p class="text-muted mb-4">Please fill in beneficiary
+                        information according to the policy</p>
+
+                    <div class="beneficiary-section mb-4">
+                        <h3 class="h5 mb-3">Beneficiaries</h3>
+
+                        <div class="beneficiary-item mb-3 p-3 border rounded">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="beneficiary1Name"
+                                        class="form-label">Beneficiary
+                                        Name</label>
+                                    <input type="text" class="form-control"
+                                        id="beneficiary1Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="beneficiary1Id"
+                                        class="form-label">ID Number</label>
+                                    <input type="text" class="form-control"
+                                        id="beneficiary1Id">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="beneficiary1Percentage"
+                                        class="form-label">Allocation
+                                        (%)</label>
+                                    <input type="number" class="form-control"
+                                        id="beneficiary1Percentage" min="0"
+                                        max="100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="beneficiary-item mb-3 p-3 border rounded">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="beneficiary2Name"
+                                        class="form-label">Beneficiary
+                                        Name</label>
+                                    <input type="text" class="form-control"
+                                        id="beneficiary2Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="beneficiary2Id"
+                                        class="form-label">ID Number</label>
+                                    <input type="text" class="form-control"
+                                        id="beneficiary2Id">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="beneficiary2Percentage"
+                                        class="form-label">Allocation
+                                        (%)</label>
+                                    <input type="number" class="form-control"
+                                        id="beneficiary2Percentage" min="0"
+                                        max="100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            id="addBeneficiary">
+                            + Add Beneficiary
+                        </button>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label
+                                class="form-label required">Payment
+                                Method</label>
+                            <div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                        name="paymentMethod" id="bankTransfer"
+                                        value="bankTransfer" required>
+                                    <label class="form-check-label"
+                                        for="bankTransfer">Bank Transfer</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                        name="paymentMethod" id="check"
+                                        value="check" required>
+                                    <label class="form-check-label"
+                                        for="check">Check</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="bankDetails" class="mt-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="bankName"
+                                    class="form-label">Financial
+                                    Institution</label>
+                                <input type="text" class="form-control"
+                                    id="bankName">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bankBranch"
+                                    class="form-label">Branch</label>
+                                <input type="text" class="form-control"
+                                    id="bankBranch">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="accountNumber"
+                                    class="form-label">Account Number</label>
+                                <input type="text" class="form-control"
+                                    id="accountNumber">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="accountName"
+                                    class="form-label">Account Name</label>
+                                <input type="text" class="form-control"
+                                    id="accountName">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button"
+                            class="btn btn-outline-secondary prev-section"
+                            data-prev="3">
+                            Previous
+                        </button>
+                        <button type="button"
+                            class="btn btn-primary next-section" data-next="5">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 5: Document Upload -->
+                <div class="form-container form-section" id="section-5">
+                    <h2 class="section-title">Document Upload</h2>
+                    <p class="text-muted mb-4">Please upload the required
+                        documents below. PDF or JPG format is recommended.</p>
+
+                    <div class="document-list">
+                        <h5 class="mb-3">Required Documents</h5>
+                        <ul id="requiredDocuments">
+                            <li>Claim application form (this form)</li>
+                            <li>Original insurance policy</li>
+                            <li>Original death certificate of the insured</li>
+                            <li>Household registration transcript of the
+                                insured</li>
+                            <li>Beneficiary identification document</li>
+                            <li>Beneficiary household registration
+                                transcript</li>
+                            <li>Copy of beneficiary's bank book cover</li>
+                            <li>Other relevant documents (e.g., accident
+                                certificate, diagnosis certificate, etc.)</li>
+                        </ul>
+                    </div>
+
+                    <div class="file-upload-area mt-4">
+                        <i class="bi bi-cloud-upload"></i>
+                        <h5>Drag & drop files here or click to upload</h5>
+                        <p class="text-muted">Supports PDF, JPG, PNG formats.
+                            Single file size up to 10MB</p>
+                        <input type="file" id="fileInput" class="d-none"
+                            multiple>
+                        <button type="button" class="btn btn-primary mt-2"
+                            id="uploadButton">
+                            Select Files
+                        </button>
+                    </div>
+
+                    <div class="uploaded-files">
+                        <h5 class="mb-3">Uploaded Files</h5>
+                        <div id="fileList" class="mb-3">
+                            <p class="text-muted">No files uploaded yet</p>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button"
+                            class="btn btn-outline-secondary prev-section"
+                            data-prev="4">
+                            Previous
+                        </button>
+                        <button type="button"
+                            class="btn btn-primary next-section" data-next="6">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 6: Review & Submit -->
+                <div class="form-container form-section" id="section-6">
+                    <h2 class="section-title">Review & Submit</h2>
+
+                    <div class="alert alert-info mb-4">
+                        <h5><i class="bi bi-info-circle"></i> Important
+                            Reminder</h5>
+                        <p class="mb-0">Please verify that the following
+                            information is correct. After submission, we will
+                            contact you within 3-5 business days. If you have
+                            any questions, please call our claim hotline:
+                            +855-23-456-789</p>
+                    </div>
+
+                    <div class="summary-section mb-4">
+                        <h5 class="mb-3">Application Summary</h5>
+
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Applicant Name:</div>
+                            <div class="col-md-8"
+                                id="summaryApplicantName">-</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Relationship to
+                                Insured:</div>
+                            <div class="col-md-8"
+                                id="summaryRelationship">-</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Insured Name:</div>
+                            <div class="col-md-8"
+                                id="summaryInsuredName">-</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Policy Number:</div>
+                            <div class="col-md-8"
+                                id="summaryPolicyNumber">-</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Claim Type:</div>
+                            <div class="col-md-8" id="summaryClaimType">-</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Incident Date:</div>
+                            <div class="col-md-8"
+                                id="summaryIncidentDate">-</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Number of
+                                Beneficiaries:</div>
+                            <div class="col-md-8"
+                                id="summaryBeneficiaryCount">-</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Uploaded
+                                Documents:</div>
+                            <div class="col-md-8" id="summaryFileCount">0
+                                files</div>
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox"
+                            id="declaration" required>
+                        <label class="form-check-label"
+                            for="declaration">
+                            I declare that the information provided above and
+                            the attached documents are true and accurate. If any
+                            information is found to be false or fraudulent, I
+                            will bear legal responsibility, and the company may
+                            cancel this claim application and request the return
+                            of any paid insurance benefits.
+                        </label>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button"
+                            class="btn btn-outline-secondary prev-section"
+                            data-prev="5">
+                            Previous
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            Submit Application
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 Titan Life Insurance | Phnom Penh, Kingdom of
+                    Cambodia</p>
+                <div class="contact-info">
+                    <div>
+                        <strong>Claim Hotline</strong><br>
+                        +855-23-456-789
+                    </div>
+                    <div>
+                        <strong>Email</strong><br>
+                        claims@titanlife.com
+                    </div>
+                    <div>
+                        <strong>Service Hours</strong><br>
+                        Mon-Fri 9:00-18:00
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Claim type selection
+            const claimTypeCards = document.querySelectorAll('.claim-type-card');
+            let selectedClaimType = 'death';
+            
+            claimTypeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    claimTypeCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedClaimType = this.getAttribute('data-claim-type');
+                    updateRequiredDocuments();
+                    updateDeathDateField();
+                });
+            });
+            
+            // Update required documents based on claim type
+            function updateRequiredDocuments() {
+                const requiredDocuments = document.getElementById('requiredDocuments');
+                
+                // Clear existing content
+                requiredDocuments.innerHTML = '';
+                
+                let documents = [];
+                
+                // Basic documents
+                documents.push('Claim application form (this form)');
+                documents.push('Original insurance policy');
+                documents.push('Beneficiary identification document');
+                documents.push('Copy of beneficiary\'s bank book cover');
+                
+                // Add specific documents based on claim type
+                if (selectedClaimType === 'death') {
+                    documents.push('Original death certificate of the insured');
+                    documents.push('Household registration transcript of the insured');
+                } else if (selectedClaimType === 'disability') {
+                    documents.push('Original diagnosis certificate');
+                    documents.push('Disability rating certificate');
+                } else if (selectedClaimType === 'accident') {
+                    documents.push('Accident certificate');
+                    documents.push('Original diagnosis certificate');
+                } else if (selectedClaimType === 'maturity') {
+                    documents.push('Policy maturity certificate');
+                }
+                
+                // Add other documents
+                documents.push('Other relevant documents');
+                
+                // Update list
+                documents.forEach(doc => {
+                    const li = document.createElement('li');
+                    li.textContent = doc;
+                    requiredDocuments.appendChild(li);
+                });
+            }
+            
+            // Update death date field based on claim type
+            function updateDeathDateField() {
+                const deathDateLabel = document.getElementById('deathDateLabel');
+                const deathDateInput = document.getElementById('deathDate');
+                
+                if (selectedClaimType === 'death') {
+                    deathDateLabel.textContent = 'Date of Death';
+                    deathDateInput.required = true;
+                } else {
+                    deathDateLabel.textContent = 'Diagnosis Date';
+                    deathDateInput.required = false;
+                }
+            }
+            
+            // Policy search functionality
+            const searchPolicyBtn = document.getElementById('searchPolicy');
+            const policyNumberInput = document.getElementById('policyNumber');
+            const clientInfoDisplay = document.getElementById('clientInfoDisplay');
+            
+            // Mock policy database
+            const policyDatabase = {
+                'TLI-2023-00123': {
+                    insuredName: 'John Smith',
+                    insuredId: 'A123456789',
+                    birthdate: '1990-05-15',
+                    gender: 'Male',
+                    policyType: 'Five Blessings',
+                    policyStartDate: '2023-01-15',
+                    coverageAmount: 'USD 25,000'
+                },
+                'TLI-2023-00234': {
+                    insuredName: 'Jane Doe',
+                    insuredId: 'B234567890',
+                    birthdate: '1985-08-22',
+                    gender: 'Female',
+                    policyType: 'Shining Life',
+                    policyStartDate: '2023-02-10',
+                    coverageAmount: 'USD 50,000'
+                },
+                'TLI-2023-00345': {
+                    insuredName: 'Michael Johnson',
+                    insuredId: 'C345678901',
+                    birthdate: '1978-12-05',
+                    gender: 'Male',
+                    policyType: 'Family Love',
+                    policyStartDate: '2023-03-20',
+                    coverageAmount: 'USD 38,461'
+                }
+            };
+            
+            searchPolicyBtn.addEventListener('click', function() {
+                const policyNumber = policyNumberInput.value.trim();
+                
+                if (!policyNumber) {
+                    alert('Please enter policy number');
+                    return;
+                }
+                
+                // Simulate API call delay
+                searchPolicyBtn.disabled = true;
+                searchPolicyBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Searching...';
+                
+                setTimeout(function() {
+                    searchPolicyBtn.disabled = false;
+                    searchPolicyBtn.innerHTML = 'Search Policy';
+                    
+                    if (policyDatabase[policyNumber]) {
+                        const policyData = policyDatabase[policyNumber];
+                        
+                        // Display client information
+                        document.getElementById('displayInsuredName').textContent = policyData.insuredName;
+                        document.getElementById('displayInsuredId').textContent = policyData.insuredId;
+                        document.getElementById('displayBirthdate').textContent = formatDate(policyData.birthdate);
+                        document.getElementById('displayGender').textContent = policyData.gender;
+                        document.getElementById('displayPolicyType').textContent = policyData.policyType;
+                        document.getElementById('displayPolicyStartDate').textContent = formatDate(policyData.policyStartDate);
+                        
+                        clientInfoDisplay.style.display = 'block';
+                        
+                        // Auto-fill applicant name (if self-application)
+                        document.getElementById('applicantName').value = policyData.insuredName;
+                        
+                        alert('Policy found! Client information has been loaded.');
+                    } else {
+                        clientInfoDisplay.style.display = 'none';
+                        alert('Policy not found. Please check the policy number and try again.');
+                    }
+                }, 1500);
+            });
+            
+            // Date formatting function
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            
+            // Form navigation functionality
+            const nextButtons = document.querySelectorAll('.next-section');
+            const prevButtons = document.querySelectorAll('.prev-section');
+            const sections = document.querySelectorAll('.form-section');
+            const steps = document.querySelectorAll('.step');
+            
+            // Next button events
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentSection = this.closest('.form-section');
+                    const nextSectionId = this.getAttribute('data-next');
+                    
+                    // Validate current form section
+                    if (validateSection(currentSection.id)) {
+                        // Hide current section
+                        currentSection.classList.remove('active');
+                        
+                        // Show next section
+                        document.getElementById(`section-${nextSectionId}`).classList.add('active');
+                        
+                        // Update step indicator
+                        updateStepIndicator(nextSectionId);
+                        
+                        // Update summary information
+                        if (nextSectionId === '6') {
+                            updateSummary();
+                        }
+                    }
+                });
+            });
+            
+            // Previous button events
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentSection = this.closest('.form-section');
+                    const prevSectionId = this.getAttribute('data-prev');
+                    
+                    // Hide current section
+                    currentSection.classList.remove('active');
+                    
+                    // Show previous section
+                    document.getElementById(`section-${prevSectionId}`).classList.add('active');
+                    
+                    // Update step indicator
+                    updateStepIndicator(prevSectionId);
+                });
+            });
+            
+            // Update step indicator
+            function updateStepIndicator(activeStep) {
+                steps.forEach(step => {
+                    const stepNumber = step.getAttribute('data-step');
+                    step.classList.remove('active', 'completed');
+                    
+                    if (stepNumber === activeStep) {
+                        step.classList.add('active');
+                    } else if (stepNumber < activeStep) {
+                        step.classList.add('completed');
+                    }
+                });
+            }
+            
+            // Form section validation
+            function validateSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                const requiredFields = section.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        isValid = false;
+                        field.classList.add('is-invalid');
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields (marked with *)');
+                }
+                
+                return isValid;
+            }
+            
+            // Beneficiary add functionality
+            const addBeneficiaryBtn = document.getElementById('addBeneficiary');
+            let beneficiaryCount = 2;
+            
+            addBeneficiaryBtn.addEventListener('click', function() {
+                beneficiaryCount++;
+                const newBeneficiary = document.createElement('div');
+                newBeneficiary.className = 'beneficiary-item mb-3 p-3 border rounded';
+                newBeneficiary.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label for="beneficiary${beneficiaryCount}Name" class="form-label">Beneficiary Name</label>
+                            <input type="text" class="form-control" id="beneficiary${beneficiaryCount}Name">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="beneficiary${beneficiaryCount}Id" class="form-label">ID Number</label>
+                            <input type="text" class="form-control" id="beneficiary${beneficiaryCount}Id">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="beneficiary${beneficiaryCount}Percentage" class="form-label">Allocation (%)</label>
+                            <input type="number" class="form-control" id="beneficiary${beneficiaryCount}Percentage" min="0" max="100">
+                        </div>
+                    </div>
+                `;
+                
+                this.parentNode.insertBefore(newBeneficiary, this);
+            });
+            
+            // File upload functionality
+            const fileInput = document.getElementById('fileInput');
+            const uploadButton = document.getElementById('uploadButton');
+            const fileList = document.getElementById('fileList');
+            let uploadedFiles = [];
+            
+            uploadButton.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+            
+            // Drag and drop file functionality
+            const dropArea = document.querySelector('.file-upload-area');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropArea.classList.add('bg-light', 'border-primary');
+            }
+            
+            function unhighlight() {
+                dropArea.classList.remove('bg-light', 'border-primary');
+            }
+            
+            dropArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+            
+            function handleFiles(files) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    uploadedFiles.push(file);
+                    displayFile(file);
+                }
+            }
+            
+            function displayFile(file) {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <div class="file-name">${file.name}</div>
+                    <div class="file-size">${formatFileSize(file.size)}</div>
+                    <div class="file-remove" data-file="${file.name}">
+                        Remove
+                    </div>
+                `;
+                
+                if (fileList.querySelector('p.text-muted')) {
+                    fileList.innerHTML = '';
+                }
+                
+                fileList.appendChild(fileItem);
+                
+                // Add remove event
+                fileItem.querySelector('.file-remove').addEventListener('click', function() {
+                    const fileName = this.getAttribute('data-file');
+                    uploadedFiles = uploadedFiles.filter(f => f.name !== fileName);
+                    fileItem.remove();
+                    
+                    if (uploadedFiles.length === 0) {
+                        fileList.innerHTML = '<p class="text-muted">No files uploaded yet</p>';
+                    }
+                });
+            }
+            
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Form submit event
+            document.getElementById('insuranceClaimForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!document.getElementById('declaration').checked) {
+                    alert('Please confirm the declaration');
+                    return;
+                }
+                
+                // In a real application, this would send form data to the server
+                alert('Claim application submitted! We will contact you within 3-5 business days.');
+                // this.submit(); // Actual form submission
+            });
+            
+            // Update summary information
+            document.querySelectorAll('input, textarea, select').forEach(element => {
+                element.addEventListener('change', updateSummary);
+                element.addEventListener('input', updateSummary);
+            });
+            
+            function updateSummary() {
+                document.getElementById('summaryApplicantName').textContent = document.getElementById('applicantName').value || '-';
+                document.getElementById('summaryRelationship').textContent = document.getElementById('relationship').value || '-';
+                document.getElementById('summaryInsuredName').textContent = document.getElementById('displayInsuredName').textContent || '-';
+                document.getElementById('summaryPolicyNumber').textContent = document.getElementById('policyNumber').value || '-';
+                
+                // Claim type
+                const claimTypeText = {
+                    death: "Death Claim",
+                    disability: "Disability Claim",
+                    accident: "Accident Claim",
+                    maturity: "Maturity Claim"
+                }[selectedClaimType];
+                
+                document.getElementById('summaryClaimType').textContent = claimTypeText;
+                
+                document.getElementById('summaryIncidentDate').textContent = document.getElementById('incidentDate').value || '-';
+                
+                // Calculate beneficiary count
+                let beneficiaryCount = 0;
+                for (let i = 1; i <= beneficiaryCount; i++) {
+                    const name = document.getElementById(`beneficiary${i}Name`);
+                    if (name && name.value) beneficiaryCount++;
+                }
+                document.getElementById('summaryBeneficiaryCount').textContent = beneficiaryCount;
+                
+                // Update file count display
+                const fileCount = uploadedFiles.length;
+                document.getElementById('summaryFileCount').textContent = `${fileCount} file(s)`;
+            }
+            
+            // Initialize bank details display
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const bankDetails = document.getElementById('bankDetails');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    if (this.value === 'bankTransfer') {
+                        bankDetails.style.display = 'block';
+                    } else {
+                        bankDetails.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Default hide bank details
+            bankDetails.style.display = 'none';
+            
+            // Initial updates
+            updateRequiredDocuments();
+            updateDeathDateField();
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Stone | Policy Renewal</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/aos/aos.css">
+</head>
+
+<body>
+    <div class="app-header">
+        <div class="header-content">
+            <div class="header-title"><img src="/images/call_icon.svg" alt=""><span>Hotline : 023-920-8888</span>
+            </div>
+            <div class="language-content">
+                <div class="language-tite">ភាសាខ្មែរ</div>
+                <div class="language-tite">English</div>
+                <div class="language-tite">繁中</div>
+                <div class="language-tite">简中</div>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR -->
+    <div class="navbar" data-aos="fade-up">
+        <a href="home.html">
+            <div class="logo">
+                <img src="/images/img_logo.svg" alt="">
+                <img src="/images/logo_title.svg" alt="">
+            </div>
+        </a>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="proposal.html">Proposal</a>
+            <a href="Application.html">Application</a>
+            <a href="PolicyQuery.html" class="active">Policy Renewal</a>
+            <a href="Performance.html">Performance</a>
+            <a href="Notification.html">Notifications</a>
+            <a href="Claim.html">Claims</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="profile.html">
+                <div class="profile">
+                    <img src="/images/profile.png" alt="">
+                </div>
+            </a>
+            <span>Sale001</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <!-- Policy Renewal -->
+        <div class="section" data-aos="fade-right">
+            <div class="section-header">Policy Renewal</div>
+            <div class="section-content">
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search">
+                    <button><img src="/images/seach-icon.svg" alt=""></button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Policy Number</th>
+                            <th>Insured Name</th>
+                            <th>Insurance Name</th>
+                            <th>Coverage Amount</th>
+                            <th>Premium</th>
+                            <th>Application Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>P202305001</td>
+                            <td>Zhang Xiaoming</td>
+                            <td>5 Blessing</td>
+                            <td>$ 100,000</td>
+                            <td>$ 104.5</td>
+                            <td>2023-05-15</td>
+                            <td><button class="btn">View</button> <button class="btn renewal-btn">Renewal</button></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>P202305002</td>
+                            <td>Li Meili</td>
+                            <td>Shining Live</td>
+                            <td>$ 150,000</td>
+                            <td>$ 156.8</td>
+                            <td>2023-06-22</td>
+                            <td><button class="btn">View</button> <button class="btn renewal-btn">Renewal</button></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>P202305003</td>
+                            <td>Wang Jianguo</td>
+                            <td>Lovely Family</td>
+                            <td>$ 200,000</td>
+                            <td>$ 210.2</td>
+                            <td>2023-07-10</td>
+                            <td><button class="btn">View</button> <button class="btn renewal-btn">Renewal</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="btn-group btn-group-1">
+                    <button class="btn">Export Excel</button>
+                    <button class="btn">Print</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blacklist Management -->
+        <div class="section" data-aos="fade-left">
+            <div class="section-header">Blacklist Management</div>
+            <div class="section-content">
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search">
+                    <button><img src="/images/seach-icon.svg" alt=""></button>
+                </div>
+
+                <div class="alert">
+                    <strong>⚠️ Permission Control</strong>
+                    Only Manager level and above can operate blacklist management, and operation logs are retained.
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>ID Number</th>
+                            <th>Mobile Number</th>
+                            <th>Blacklist Reason</th>
+                            <th>Blacklist Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CHEN XXX</td>
+                            <td>K123456789</td>
+                            <td>012 345-678</td>
+                            <td>Fraud</td>
+                            <td>2023-03-15</td>
+                            <td><button class="btn">View Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>Lin XXX</td>
+                            <td>K987654321</td>
+                            <td>011 222-333</td>
+                            <td>Overdue</td>
+                            <td>2023-04-22</td>
+                            <td><button class="btn">View Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- === POLICY DETAILS MODAL === -->
+        <div class="policy-overlay" id="policyModal">
+            <div class="policy-box">
+                <div class="policy-header">
+                    <h3>Policy Details</h3>
+                    <button class="btn-close" id="closePolicy">Close</button>
+                </div>
+
+                <div class="policy-content">
+
+                    <h4>Basic Policy Information</h4>
+                    <div class="policy-form">
+                        <label>Policy Number</label><input type="text" value="P202305001" readonly>
+                        <label>Insurance Product</label><input type="text" value="5 Blessings" readonly>
+                        <label>Application Date</label><input type="text" value="2023-05-15" readonly>
+                        <label>Policy Effective Date</label><input type="text" value="2023-05-16" readonly>
+                        <label>Insurance Period</label><input type="text" value="20 Years" readonly>
+                        <label>Policy Status</label><input type="text" value="Active" readonly>
+                    </div>
+
+                    <h4>Insurance Amount and Premium</h4>
+                    <div class="policy-form">
+                        <label>Applicant Name</label><input type="text" value="Zhang Xiaoming" readonly>
+                        <label>ID Card Number</label><input type="text" value="K123456789" readonly>
+                        <label>Date of Birth</label><input type="text" value="1985-03-15" readonly>
+                        <label>Contact Phone</label><input type="text" value="012-345-678" readonly>
+                        <label>Mailing Address</label><input type="text" value="123 Monivong Blvd, Phnom Penh" readonly>
+                    </div>
+
+                    <h4>Applicant Information</h4>
+                    <div class="policy-form">
+                        <label>Insurance Amount</label><input type="text" value="$100,000" readonly>
+                        <label>Annual Premium</label><input type="text" value="$104.5" readonly>
+                        <label>Payment Method</label><input type="text" value="Annual" readonly>
+                        <label>Payment Period</label><input type="text" value="20 Years" readonly>
+                        <label>Next Payment Date</label><input type="text" value="2024-05-16" readonly>
+                    </div>
+
+                    <h4>Insured Person Information</h4>
+                    <div class="policy-form">
+                        <label>Insured Name</label><input type="text" value="Zhang Xiaoming" readonly>
+                        <label>ID Card Number</label><input type="text" value="K123456789" readonly>
+                        <label>Date of Birth</label><input type="text" value="1985-03-15" readonly>
+                        <label>Relationship to Applicant</label><input type="text" value="Self" readonly>
+                    </div>
+
+                    <h4>Business Information</h4>
+                    <div class="policy-form">
+                        <label>Sales Agent</label><input type="text" value="Li Sales" readonly>
+                        <label>Agent Commission Rate</label><input type="text" value="10%" readonly>
+                        <label>Agent Commission Amount</label><input type="text" value="$10.45" readonly>
+                        <label>Referrer</label><input type="text" value="Wang Manager" readonly>
+                        <label>Referral Commission Rate</label><input type="text" value="2%" readonly>
+                        <label>Referral Commission Amount</label><input type="text" value="$2.09" readonly>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <table id="policyTable">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Policy Number</th>
+                    <th>Insured Name</th>
+                    <th>Insurance Name</th>
+                    <th>Coverage Amount</th>
+                    <th>Premium</th>
+                    <th>Application Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>P202305001</td>
+                    <td>Zhang Xiaoming</td>
+                    <td>5 Blessing</td>
+                    <td>$100,000</td>
+                    <td>$104.5</td>
+                    <td>2023-05-15</td>
+                    <td>
+                        <button class="btn view-btn">View</button>
+                        <button class="btn renewal-btn">Renewal</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Renewal Popup -->
+        <div id="renewalPopup" class="popup-overlay">
+            <div class="popup-box">
+                <h3>Renewal</h3>
+                <div class="renewal-content">
+                    <p><span>Policy number</span><span>P202305001</span></p>
+                    <p><span>Insured Name</span><span>Zhang Xiaoming</span></p>
+                    <p><span>Insurance Name</span><span>5 Blessing</span></p>
+                    <p><span>Coverage Amount</span><span>$100,000</span></p>
+                    <p><span>Premium</span><span>$104.5</span></p>
+                    <p><span>Start Date</span><span>2025-10-01</span></p>
+                    <p><span>Expiration Date</span><span>2026-09-30</span></p>
+
+                    <div class="renewal-options">
+                        <select name="" id="">
+                            <option value="">Monthly</option>
+                            <option value="">Quarterly</option>
+                            <option value="">Semi-annual</option>
+                            <option value="">Annual</option>
+                        </select>
+                        <select name="" id="">
+                            <option value="">ABA</option>
+                            <option value="">ACLIDA</option>
+                            <option value="">CASH</option>
+                        </select>
+                    </div>
+
+                    <p class="amount-payable">
+                        <span>Amount payable this time:</span>
+                        <span class="renewal-price">$104.5</span>
+                    </p>
+
+                    <div class="popup-buttons">
+                        <button id="confirmRenewal" class="btn-primary">Confirm</button>
+                        <button id="cancelRenewal" class="btn-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === SIGN OUT MODAL === -->
+        <div class="signout-overlay" id="signoutModal">
+            <div class="signout-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt="Sign Out Icon">
+                <h3>Would you like to sign out?</h3>
+                <p>You will need to log in again to access your Account</p>
+                <div class="signout-btns">
+                    <button class="btn btn-signout" id="confirmSignOut">Sign Out</button>
+                    <button class="btn btn-cancel" id="cancelSignOut">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/aos/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000, // animation duration in ms
+        once: false      // <---- important! animation happens every time scrolling
+    });
+</script>
+
+</html>
