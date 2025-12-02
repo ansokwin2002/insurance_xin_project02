@@ -21,12 +21,25 @@ $(function () {
     $("body").removeClass("menu-open");
   });
 
-  // Close menu when clicking a menu link (except product dropdown)
-  menuContent.find("a").not(".product-menu a").on("click", function () {
+  // Close menu when clicking any menu link
+  menuContent.find("a").on("click", function (e) {
+    // Don't close if clicking the product menu label itself
+    if (!$(this).parent().hasClass("product-menu")) {
+      hamburgerMenu.removeClass("active");
+      menuContent.removeClass("active");
+      menuOverlay.removeClass("active");
+      $("body").removeClass("menu-open");
+      productMenu.removeClass("active");
+    }
+  });
+
+  // Close menu when clicking product dropdown links
+  productMenu.find(".dropdown-product a").on("click", function () {
     hamburgerMenu.removeClass("active");
     menuContent.removeClass("active");
     menuOverlay.removeClass("active");
     $("body").removeClass("menu-open");
+    productMenu.removeClass("active");
   });
 
   // Toggle product dropdown in mobile menu
