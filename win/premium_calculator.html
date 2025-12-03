@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@100;300;400;700;900&family=Kantumruy+Pro:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator-wrapper">
+        <div class="header-box">
+            <h1>Premium Calculator</h1>
+            <p>Calculate insurance premiums in real time based on your needs.</p>
+        </div>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <h2>Get your quote now</h2>
+                
+                <div class="field-group">
+                    <label>Gender</label>
+                    <div class="gender-selector">
+                        <div class="gender-btn active">
+                            <div class="icon-circle">👤</div>
+                        </div>
+                        <div class="gender-btn">
+                            <div class="icon-circle">👤</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label>Insurance Type</label>
+                    <select class="input-field">
+                        <option>Lovely Family</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label>Age</label>
+                    <select class="input-field">
+                        <option>18</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label>Insurance Amount</label>
+                    <select class="input-field">
+                        <option>100,000</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label>Insurance Period</label>
+                    <select class="input-field">
+                        <option>10 Year</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label>Phone Number</label>
+                    <input type="text" class="input-field" placeholder="Please enter">
+                </div>
+
+                <div class="promo-code">
+                    <span class="tag">🏷️</span>
+                    <a href="#">Got a promo code?</a>
+                </div>
+
+                <div class="field-group">
+                    <label>E-mail</label>
+                    <input type="email" class="input-field" placeholder="Please enter">
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <p class="quote-header">Based on information you provided, here is your quote:</p>
+                
+                <div class="premium-box">
+                    <span class="label">Annual premium</span>
+                    <div class="value">
+                        <small>US$</small><strong>7,500.00</strong>
+                    </div>
+                </div>
+
+                <div class="premium-box">
+                    <span class="label">Total premium</span>
+                    <div class="value">
+                        <small>US$</small><strong>75,000.00</strong>
+                    </div>
+                </div>
+
+                <div class="premium-box">
+                    <span class="label">Total Coverage</span>
+                    <div class="value">
+                        <small>US$</small><strong>500,000.00</strong>
+                    </div>
+                </div>
+
+                <button class="submit-button">Submit</button>
+
+                <p class="disclaimer-text">
+                    The premium above is calculated on standard rates and is for your reference only. The actual premium to be paid can be varied based on your gender, age, occupation and other underwriting factors that are evaluated by the Company.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .calculator-wrapper {
+            background-color: #f5f0e1;
+            max-width: 1200px;
+            max-width: 920px;
+            padding: 0 30px 30px 30px;
+        }
+
+        .header-box {
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 0 -30px 30px -30px;
+        }
+
+        .header-box h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .header-box p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .left-panel {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .left-panel h2 {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .field-group {
+            margin-bottom: 14px;
+        }
+
+        .field-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .gender-selector {
+            display: flex;
+            gap: 8px;
+        }
+
+        .gender-btn {
+            cursor: pointer;
+        }
+
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            border: 2px solid #d0d0d0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fafafa;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .gender-btn.active .icon-circle {
+            border-color: #c9a861;
+            background-color: #fff9e6;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            appearance: none;
+            background-color: white;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23666' d='M5 7L1 3h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+
+        .input-field::placeholder {
+            color: #bbb;
+        }
+
+        .promo-code {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 14px;
+        }
+
+        .promo-code .tag {
+            font-size: 13px;
+        }
+
+        .promo-code a {
+            font-size: 12px;
+            color: #c9a861;
+            text-decoration: none;
+        }
+
+        .promo-code a:hover {
+            text-decoration: underline;
+        }
+
+        .right-panel {
+            background-color: #d4ae6a;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .quote-header {
+            font-size: 11px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .premium-box {
+            background-color: white;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .premium-box .label {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .premium-box .value {
+            display: flex;
+            align-items: baseline;
+            gap: 3px;
+        }
+
+        .premium-box .value small {
+            font-size: 10px;
+            color: #666;
+        }
+
+        .premium-box .value strong {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #8b6914;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: background-color 0.2s;
+        }
+
+        .submit-button:hover {
+            background-color: #6d5010;
+        }
+
+        .disclaimer-text {
+            font-size: 9px;
+            line-height: 1.4;
+            color: #000;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-wrapper {
+                padding: 0 20px 20px 20px;
+            }
+
+            .header-box {
+                margin: 0 -20px 20px -20px;
+            }
+        }
+    </style>
+
+    <script>
+        document.querySelectorAll('.gender-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

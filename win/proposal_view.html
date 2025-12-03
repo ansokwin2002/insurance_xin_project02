@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@100;300;400;700;900&family=Kantumruy+Pro:wght@100;200;300;400;500;600;700&family=Moul&family=Siemreap&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <h1 class="page-title">Proposal View</h1>
+            <button class="create-new-btn" onclick="window.location.href = 'proposal_create.html'">Create New</button>
+        </div>
+        
+        <hr>
+
+        <div class="controls-section">
+            <div class="search-box">
+                <input type="text" class="search-input form-control" placeholder="Enter policy number" id="searchInput">
+                <button class="search-btn" onclick="searchPolicy()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="proposal-table">
+                <thead>
+                    <tr>
+                        <th>no.</th>
+                        <th>Policy Number</th>
+                        <th>Insured Name</th>
+                        <th>Insurance Name</th>
+                        <th>Coverage Amount</th>
+                        <th>Premium</th>
+                        <th>Application Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td>001</td>
+                        <td>POL-20251126-01-536645</td>
+                        <td>Phun Sinath</td>
+                        <td>Shining Life</td>
+                        <td>$5,000.00</td>
+                        <td>$849.00</td>
+                        <td>2025-11-26</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="view-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    View
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="viewDetail()">View Detail</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="printPolicy('POL-20251126-01-536645')">Print</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="processApplication('POL-20251126-01-536645')">Process to Application</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>POL-20251125-02-428391</td>
+                        <td>Sok Dara</td>
+                        <td>Health Plus</td>
+                        <td>$10,000.00</td>
+                        <td>$1,250.00</td>
+                        <td>2025-11-25</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="view-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    View
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="viewDetail()">View Detail</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="editPolicy('POL-20251125-02-428391')">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="printPolicy('POL-20251125-02-428391')">Print</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="processApplication('POL-20251125-02-428391')">Process to Application</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>POL-20251124-03-912847</td>
+                        <td>Chan Virak</td>
+                        <td>Future Protect</td>
+                        <td>$7,500.00</td>
+                        <td>$950.00</td>
+                        <td>2025-11-24</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="view-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    View
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="viewDetail()">View Detail</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="editPolicy('POL-20251124-03-912847')">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="printPolicy('POL-20251124-03-912847')">Print</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="processApplication('POL-20251124-03-912847')">Process to Application</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="noDataRow" style="display: none;">
+                        <td colspan="8" class="no-data-cell">
+                            <div class="no-data-message">
+                                <i class="fa-solid fa-folder-open"></i>
+                                <p>No data found</p>
+                                <small>No records match your search criteria</small>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="button-group mt-3">
+            <button class="export-btn" onclick="exportToExcel()">Export Excel</button>
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Battambang', 'Kantumruy Pro', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 0 0 20px 0;
+        }
+
+        .page-title {
+            color: #b37e0c;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .create-new-btn {
+            background-color: #f5f0e6;
+            border: 1px solid #ddd;
+            padding: 8px 25px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background-color 0.3s;
+        }
+
+        .create-new-btn:hover {
+            background-color: #e8e8e8;
+        }
+
+        .controls-section {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .export-btn {
+            background-color: #c9a861;
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background-color 0.3s;
+        }
+
+        .export-btn:hover {
+            background-color: #b8974f;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 400px;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 13px;
+            min-width: 250px;
+        }
+
+        .search-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .table-responsive {
+            overflow: visible;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .proposal-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .proposal-table thead {
+            background-color: #f5f5f5;
+        }
+
+        .proposal-table th {
+            padding: 10px 12px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            border: 1px solid #ddd;
+            font-size: 13px;
+        }
+
+        .proposal-table td {
+            padding: 10px 12px;
+            color: #555;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .proposal-table tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .proposal-table tbody tr {
+            position: relative;
+        }
+
+        .proposal-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .view-btn {
+            background-color: #c9a861;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background-color 0.3s;
+            font-family: 'Battambang', 'Kantumruy Pro', Arial, sans-serif;
+        }
+
+        .view-btn:hover {
+            background-color: #b8974f;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            font-family: 'Battambang', 'Kantumruy Pro', Arial, sans-serif;
+            font-size: 14px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #e0e0e0;
+            min-width: 200px;
+            position: absolute !important;
+            z-index: 1050;
+            background-color: white;
+            left: 0 !important;
+            right: auto !important;
+            top: 100% !important;
+            transform: none !important;
+            margin-top: 4px !important;
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f8f8;
+            color: #c9a861;
+        }
+
+        .no-data-cell {
+            text-align: center;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        .no-data-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .no-data-message i {
+            font-size: 64px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .no-data-message p {
+            font-size: 18px;
+            font-weight: 500;
+            color: #666;
+            margin: 10px 0 5px 0;
+        }
+
+        .no-data-message small {
+            font-size: 14px;
+            color: #999;
+        }
+
+        @media (max-width: 992px) {
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .search-input {
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .create-new-btn {
+                width: 100%;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+            .proposal-table {
+                font-size: 12px;
+                min-width: 800px;
+            }
+
+            .proposal-table th,
+            .proposal-table td {
+                padding: 10px 8px;
+            }
+
+            .export-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+
+            .proposal-table {
+                font-size: 11px;
+            }
+
+            .proposal-table th,
+            .proposal-table td {
+                padding: 8px 6px;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function searchPolicy() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const table = document.getElementById('tableBody');
+            const rows = table.getElementsByTagName('tr');
+            const noDataRow = document.getElementById('noDataRow');
+            let visibleRows = 0;
+
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].id === 'noDataRow') continue;
+                
+                const policyNumber = rows[i].getElementsByTagName('td')[1];
+                if (policyNumber) {
+                    const textValue = policyNumber.textContent || policyNumber.innerText;
+                    if (textValue.toLowerCase().indexOf(searchValue) > -1) {
+                        rows[i].style.display = '';
+                        visibleRows++;
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+
+            // Show or hide no data message
+            if (visibleRows === 0) {
+                noDataRow.style.display = '';
+            } else {
+                noDataRow.style.display = 'none';
+            }
+        }
+
+        function exportToExcel() {
+            alert('Export to Excel functionality - This will download the table data as Excel file');
+        }
+
+        function viewDetail() {
+            window.location.href = 'proposal_detail.html';
+        }
+
+        function editPolicy(policyNumber) {
+            alert('Editing policy: ' + policyNumber);
+        }
+
+        function printPolicy(policyNumber) {
+            alert('Printing policy: ' + policyNumber);
+            window.print();
+        }
+
+        function processApplication(policyNumber) {
+            alert('Processing application for policy: ' + policyNumber);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchPolicy();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

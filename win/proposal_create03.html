@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal - Upload Documents</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@100;300;400;700;900&family=Kantumruy+Pro:wght@100;200;300;400;500;600;700&family=Moul&family=Siemreap&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">Proposal</h1>
+        </div>
+
+        <div class="warning-banner">
+            THE INFORMATION CONTAINED HEREIN IS FOR ILLUSTRATING POLICY VALUE, BENEFITS, AND RELEVANT INFORMATION. THE POLICY PROVISION OF THE CONTRACT SHALL PREVAIL.
+        </div>
+
+        <div class="form-section">
+            <div class="form-row three-columns">
+                <div class="form-group">
+                    <label>Policy Owner Full Name:</label>
+                    <div class="input-with-icon">
+                        <span class="icon">👤</span>
+                        <input type="text" class="form-control" value="wed">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Advisor Full Name:</label>
+                    <div class="input-with-icon">
+                        <span class="icon">👤</span>
+                        <input type="text" class="form-control" placeholder="Please enter advisor full name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Advisor Code:</label>
+                    <div class="input-with-icon">
+                        <span class="icon">💳</span>
+                        <input type="text" class="form-control" placeholder="Please enter advisor code">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row two-columns">
+                <div class="form-group">
+                    <label>ID card/Passport Image:</label>
+                    <div class="upload-container">
+                        <div class="upload-preview" id="preview1">
+                            <span class="preview-text">Upload Preview</span>
+                        </div>
+                        <button class="upload-btn" onclick="document.getElementById('file1').click()">
+                            📁 Upload
+                        </button>
+                        <input type="file" id="file1" accept=".png, .jpg, .jpeg" onchange="previewFile('file1', 'preview1')" style="display: none;">
+                        <p class="file-info">Accepted file (2MB): .png, .jpg</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>ID card/Passport Image:</label>
+                    <div class="upload-container">
+                        <div class="upload-preview" id="preview2">
+                            <span class="preview-text">Upload Preview</span>
+                        </div>
+                        <button class="upload-btn" onclick="document.getElementById('file2').click()">
+                            📁 Upload
+                        </button>
+                        <input type="file" id="file2" accept=".png, .jpg, .jpeg" onchange="previewFile('file2', 'preview2')" style="display: none;">
+                        <p class="file-info">Accepted file (2MB): .png, .jpg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="back-btn" onclick="goBack()">Back</button>
+            <button class="submit-btn" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Battambang', 'Kantumruy Pro', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+        }
+
+        .header {
+            margin-bottom: 10px;
+        }
+
+        .page-title {
+            color: #b37e0c;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .warning-banner {
+            background-color: #c9a861;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 11px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-section {
+            padding: 0 15px;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            margin-bottom: 25px;
+        }
+
+        .form-row.three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .form-row.two-columns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Battambang', 'Kantumruy Pro', Arial, sans-serif;
+        }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-icon .icon {
+            position: absolute;
+            left: 10px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .input-with-icon .form-control {
+            padding-left: 35px;
+            width: 100%;
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .upload-preview {
+            width: 100%;
+            height: 180px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fafafa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .preview-text {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .upload-btn {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            font-family: Arial, sans-serif;
+            align-self: flex-start;
+        }
+
+        .upload-btn:hover {
+            background-color: #333;
+        }
+
+        .file-info {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 15px;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 10px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            font-family: Arial, sans-serif;
+        }
+
+        .back-btn:hover {
+            background-color: #e8e8e8;
+        }
+
+        .submit-btn {
+            background-color: #c9a861;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            font-family: Arial, sans-serif;
+        }
+
+        .submit-btn:hover {
+            background-color: #b8974f;
+        }
+
+        @media (max-width: 968px) {
+            .form-row.three-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+
+            .warning-banner {
+                font-size: 10px;
+                padding: 10px;
+            }
+
+            .form-row.two-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row.three-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .back-btn,
+            .submit-btn {
+                width: 100%;
+                padding: 12px;
+            }
+
+            .upload-preview {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+            }
+
+            .form-control {
+                font-size: 13px;
+            }
+
+            .upload-preview {
+                height: 120px;
+            }
+        }
+    </style>
+
+    <script>
+        function previewFile(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+
+            if (file) {
+                const maxSize = 2 * 1024 * 1024;
+                if (file.size > maxSize) {
+                    alert('File size exceeds 2MB limit');
+                    input.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function submitForm() {
+            const file1 = document.getElementById('file1').files[0];
+            const file2 = document.getElementById('file2').files[0];
+
+            if (!file1 || !file2) {
+                alert('Please upload both ID card/Passport images');
+                return;
+            }
+
+            alert('Form submitted successfully!');
+            window.location.href = 'proposal_view.html';
+        }
+    </script>
+</body>
+</html>
